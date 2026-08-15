@@ -66,29 +66,38 @@
             background: rgba(0, 0, 0, 0.6);
             position: fixed;
             top: 0;
-            right: 0;
+            left: 0;
             z-index: 10000;
             color: #fff;
             border: 3px solid #fff;
             border-radius: .5rem;
             display: flex;
             align-items: center;
+            justify-content: flex-start;
             gap: 0.65rem;
-            padding: 0 14px;
+            padding: 0 15px;
+            width: 48px;
             height: 48px;
             margin: 8px;
             font-size: 18px;
             opacity: 0;
-            transition: opacity .5s ease-out, transform 1s ease-out;
+            overflow: hidden;
+            transition: opacity .5s ease-out, transform 1s ease-out, width 0.3s ease;
         }
 
         #volume-control.animate-in {
             opacity: 1;
         }
 
+        #volume-control:hover,
+        #volume-control:focus-within {
+            width: 165px;
+        }
+
         #volume-control i {
             cursor: pointer;
             width: 18px;
+            flex-shrink: 0;
             text-align: center;
         }
 
@@ -96,11 +105,19 @@
             -webkit-appearance: none;
             appearance: none;
             width: 90px;
+            flex-shrink: 0;
             height: 4px;
             border-radius: 2px;
             background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
             outline: none;
             cursor: pointer;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+        }
+
+        #volume-control:hover #volume-slider,
+        #volume-control:focus-within #volume-slider {
+            opacity: 1;
         }
 
         #volume-slider::-webkit-slider-thumb {
@@ -824,11 +841,11 @@
                     { serverName: "Tierlist CoralMC [1.9+]", role: "HELPER, SS VERIFIED", color: "#33cc33", imgurLink: "https://imgur.com/a/coralmc-tierlist-1-9-helper-ss-verified-ioUSox3" },
                     { serverName: "Isi123's Server", role: "MOD, SUPPORTER", color: "#33ccff", imgurLink: "https://imgur.com/a/isi123s-server-mod-supporter-itYf4wQ" },
                     { serverName: "SS Methods", role: "SS VERIFIED, SS MENTOR", color: "#8b0000", imgurLink: "https://imgur.com/a/ss-methods-ss-verified-method-mentor-6jgpsA0" },
-                    { serverName: "Ocean Scanner (anticheat.ac)", role: "STAFF, SUPPORTER", color: "#ffffff", imgurLink: "https://imgur.com/a/ocean-scanner-anticheat-ac-staff-DYfYxm2" }
+                    { serverName: "Ocean Scanner (anticheat.ac)", role: "STAFF, SUPPORTER", color: "#ff2b2b", imgurLink: "https://imgur.com/a/ocean-scanner-anticheat-ac-staff-DYfYxm2" }
                 ],
                 minecraft: [
                     { serverName: "EngineMC", role: "ADMIN, SS MANAGER, STAFF & MEDIA MANAGER", color: "#ff3333", imgurLink: "https://imgur.com/a/enginemc-admin-ss-staff-media-manager-pluginner-M8pVx4x" },
-                    { serverName: "FruitMC", role: "SRMOD, SS VERIFIED, ROLL VERIFIED", color: "#16247d", imgurLink: "https://imgur.com/a/fruitmc-srmod-ss-verified-roll-verified-pOjBrPI" }
+                    { serverName: "FruitMC", role: "SRMOD, SS VERIFIED, ROLL VERIFIED", color: "#3b82f6", imgurLink: "https://imgur.com/a/fruitmc-srmod-ss-verified-roll-verified-pOjBrPI" }
                 ]
             },
             links: [
