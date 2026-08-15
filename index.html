@@ -62,6 +62,72 @@
             opacity: 1;
         }
 
+        #volume-control {
+            background: rgba(0, 0, 0, 0.6);
+            position: fixed;
+            top: 0;
+            right: 0;
+            z-index: 10000;
+            color: #fff;
+            border: 3px solid #fff;
+            border-radius: .5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.65rem;
+            padding: 0 14px;
+            height: 48px;
+            margin: 8px;
+            font-size: 18px;
+            opacity: 0;
+            transition: opacity .5s ease-out, transform 1s ease-out;
+        }
+
+        #volume-control.animate-in {
+            opacity: 1;
+        }
+
+        #volume-control i {
+            cursor: pointer;
+            width: 18px;
+            text-align: center;
+        }
+
+        #volume-slider {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 90px;
+            height: 4px;
+            border-radius: 2px;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+            outline: none;
+            cursor: pointer;
+        }
+
+        #volume-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: #ffffff;
+            border: 2px solid var(--accent-secondary);
+            cursor: pointer;
+        }
+
+        #volume-slider::-moz-range-thumb {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: #ffffff;
+            border: 2px solid var(--accent-secondary);
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            #volume-slider {
+                width: 60px;
+            }
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -658,6 +724,16 @@
         <h1>Click Anywhere</h1>
     </div>
 
+    <audio id="bg-music" loop>
+        <source src="canzone.mp3" type="audio/mp3">
+        Il tuo browser non supporta l'elemento audio.
+    </audio>
+
+    <div id="volume-control">
+        <i class="fa-solid fa-volume-high" id="volume-icon"></i>
+        <input type="range" id="volume-slider" min="0" max="1" step="0.01" value="0.075">
+    </div>
+
     <div class="scroll-progress">
         <div class="scroll-progress-bar"></div>
     </div>
@@ -740,19 +816,19 @@
             profile: {
                 name: "Tudo",
                 avatar: "profilepicture.png",
-                subtitle: "Minecraft & Discord Staff",
+                subtitle: "Student & DFIR Specialist",
             },
             staffExperience: {
                 discord: [
-                    { serverName: "AuraMC Tierlist", role: "TIERLIST MOD", color: "#ff3333", imgurLink: "https://imgur.com/a/auramc-tierlist-tierlist-mod-7Y3OoUE" },
-                    { serverName: "Tierlist CoralMC [1.9+]", role: "HELPER, SS VERIFIED", color: "#cc0000", imgurLink: "https://imgur.com/a/coralmc-tierlist-1-9-helper-ss-verified-ioUSox3" },
-                    { serverName: "Isi123's Server", role: "MOD, SUPPORTER", color: "#ff6666", imgurLink: "https://imgur.com/a/isi123s-server-mod-supporter-itYf4wQ" },
+                    { serverName: "AuraMC Tierlist", role: "TIERLIST MOD", color: "#33ccff", imgurLink: "https://imgur.com/a/auramc-tierlist-tierlist-mod-7Y3OoUE" },
+                    { serverName: "Tierlist CoralMC [1.9+]", role: "HELPER, SS VERIFIED", color: "#33cc33", imgurLink: "https://imgur.com/a/coralmc-tierlist-1-9-helper-ss-verified-ioUSox3" },
+                    { serverName: "Isi123's Server", role: "MOD, SUPPORTER", color: "#33ccff", imgurLink: "https://imgur.com/a/isi123s-server-mod-supporter-itYf4wQ" },
                     { serverName: "SS Methods", role: "SS VERIFIED, SS MENTOR", color: "#8b0000", imgurLink: "https://imgur.com/a/ss-methods-ss-verified-method-mentor-6jgpsA0" },
                     { serverName: "Ocean Scanner (anticheat.ac)", role: "STAFF, SUPPORTER", color: "#ffffff", imgurLink: "https://imgur.com/a/ocean-scanner-anticheat-ac-staff-DYfYxm2" }
                 ],
                 minecraft: [
                     { serverName: "EngineMC", role: "ADMIN, SS MANAGER, STAFF & MEDIA MANAGER", color: "#ff3333", imgurLink: "https://imgur.com/a/enginemc-admin-ss-staff-media-manager-pluginner-M8pVx4x" },
-                    { serverName: "FruitMC", role: "SRMOD, SS VERIFIED, ROLL VERIFIED", color: "#cc0000", imgurLink: "https://imgur.com/a/fruitmc-srmod-ss-verified-roll-verified-pOjBrPI" }
+                    { serverName: "FruitMC", role: "SRMOD, SS VERIFIED, ROLL VERIFIED", color: "#16247d", imgurLink: "https://imgur.com/a/fruitmc-srmod-ss-verified-roll-verified-pOjBrPI" }
                 ]
             },
             links: [
@@ -880,6 +956,45 @@
         const bgStartAudio = document.getElementById('bg-start-audio');
         const bgStartAudioH1 = bgStartAudio.querySelector('h1');
         const appContainer = document.querySelector('.app-container');
+        const bgMusic = document.getElementById('bg-music');
+        const volumeControl = document.getElementById('volume-control');
+        const volumeSlider = document.getElementById('volume-slider');
+        const volumeIcon = document.getElementById('volume-icon');
+
+        let lastVolume = parseFloat(volumeSlider.value);
+        bgMusic.volume = lastVolume;
+
+        function updateVolumeIcon(v) {
+            if (v == 0) {
+                volumeIcon.className = 'fa-solid fa-volume-xmark';
+            } else if (v < 0.5) {
+                volumeIcon.className = 'fa-solid fa-volume-low';
+            } else {
+                volumeIcon.className = 'fa-solid fa-volume-high';
+            }
+        }
+
+        function setVolume(v) {
+            bgMusic.volume = v;
+            volumeSlider.value = v;
+            updateVolumeIcon(v);
+        }
+
+        volumeSlider.addEventListener('input', (e) => {
+            const v = parseFloat(e.target.value);
+            bgMusic.volume = v;
+            if (v > 0) lastVolume = v;
+            updateVolumeIcon(v);
+        });
+
+        volumeIcon.addEventListener('click', () => {
+            if (bgMusic.volume > 0) {
+                lastVolume = bgMusic.volume;
+                setVolume(0);
+            } else {
+                setVolume(lastVolume || 0.075);
+            }
+        });
 
         function revealApp() {
             bgStartAudio.style.pointerEvents = 'none';
@@ -889,7 +1004,12 @@
             setTimeout(() => {
                 document.body.style.overflowY = 'auto'
                 appContainer.classList.add('animate-in');
+                volumeControl.classList.add('animate-in');
             }, 100);
+
+            bgMusic.play().catch((error) => {
+                console.log("Autoplay failed:", error);
+            });
         }
         document.addEventListener('click', revealApp, { once: true });
 
