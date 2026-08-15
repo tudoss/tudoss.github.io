@@ -72,17 +72,14 @@
             border: 3px solid #fff;
             border-radius: .5rem;
             display: flex;
+            flex-direction: column;
             align-items: center;
-            justify-content: center;
-            gap: 0.65rem;
-            padding: 0 15px;
             width: 48px;
             height: 48px;
             margin: 8px;
-            font-size: 18px;
             opacity: 0;
             overflow: hidden;
-            transition: opacity .5s ease-out, transform 1s ease-out, width 0.3s ease;
+            transition: opacity .5s ease-out, transform 1s ease-out, height 0.3s ease;
         }
 
         #volume-control.animate-in {
@@ -91,35 +88,54 @@
 
         #volume-control:hover,
         #volume-control:focus-within {
-            width: 165px;
-            justify-content: flex-start;
+            height: 160px;
+        }
+
+        #volume-icon-wrap {
+            width: 48px;
+            height: 48px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
         }
 
         #volume-icon {
-            cursor: pointer;
             width: 20px;
             height: 20px;
-            flex-shrink: 0;
             display: block;
+        }
+
+        #volume-slider-wrap {
+            width: 48px;
+            height: 0;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            opacity: 0;
+            transition: height 0.3s ease, opacity 0.2s ease;
+        }
+
+        #volume-control:hover #volume-slider-wrap,
+        #volume-control:focus-within #volume-slider-wrap {
+            height: 108px;
+            opacity: 1;
         }
 
         #volume-slider {
             -webkit-appearance: none;
             appearance: none;
-            width: 90px;
+            width: 88px;
             flex-shrink: 0;
             height: 4px;
             border-radius: 2px;
             background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
             outline: none;
             cursor: pointer;
-            opacity: 0;
-            transition: opacity 0.2s ease;
-        }
-
-        #volume-control:hover #volume-slider,
-        #volume-control:focus-within #volume-slider {
-            opacity: 1;
+            transform: rotate(-90deg);
         }
 
         #volume-slider::-webkit-slider-thumb {
@@ -141,10 +157,15 @@
             cursor: pointer;
         }
 
-        @media (max-width: 768px) {
-            #volume-slider {
-                width: 60px;
-            }
+        #song-credit {
+            position: fixed;
+            bottom: 10px;
+            right: 12px;
+            z-index: 500;
+            font-size: 0.65rem;
+            color: rgba(255, 255, 255, 0.3);
+            pointer-events: none;
+            letter-spacing: 0.02em;
         }
 
         * {
@@ -749,20 +770,26 @@
     </audio>
 
     <div id="volume-control">
-        <svg id="volume-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
-            <defs>
-                <mask id="volumeIconMask">
-                    <g fill="none" stroke="#fff" stroke-width="4">
-                        <path fill="#555" stroke-linejoin="round" d="M24 6v36c-7 0-12.201-9.16-12.201-9.16H6a2 2 0 0 1-2-2V17.01a2 2 0 0 1 2-2h5.799S17 6 24 6Z"></path>
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M32 15a11.91 11.91 0 0 1 1.684 1.859A12.07 12.07 0 0 1 36 24c0 2.654-.846 5.107-2.278 7.09A11.936 11.936 0 0 1 32 33"></path>
-                        <path stroke-linecap="round" d="M34.236 41.186C40.084 37.696 44 31.305 44 24c0-7.192-3.796-13.496-9.493-17.02"></path>
-                    </g>
-                </mask>
-            </defs>
-            <path fill="currentColor" d="M0 0h48v48H0z" mask="url(#volumeIconMask)"></path>
-        </svg>
-        <input type="range" id="volume-slider" min="0" max="1" step="0.01" value="0.075">
+        <div id="volume-icon-wrap">
+            <svg id="volume-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+                <defs>
+                    <mask id="volumeIconMask">
+                        <g fill="none" stroke="#fff" stroke-width="4">
+                            <path fill="#555" stroke-linejoin="round" d="M24 6v36c-7 0-12.201-9.16-12.201-9.16H6a2 2 0 0 1-2-2V17.01a2 2 0 0 1 2-2h5.799S17 6 24 6Z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M32 15a11.91 11.91 0 0 1 1.684 1.859A12.07 12.07 0 0 1 36 24c0 2.654-.846 5.107-2.278 7.09A11.936 11.936 0 0 1 32 33"></path>
+                            <path stroke-linecap="round" d="M34.236 41.186C40.084 37.696 44 31.305 44 24c0-7.192-3.796-13.496-9.493-17.02"></path>
+                        </g>
+                    </mask>
+                </defs>
+                <path fill="currentColor" d="M0 0h48v48H0z" mask="url(#volumeIconMask)"></path>
+            </svg>
+        </div>
+        <div id="volume-slider-wrap">
+            <input type="range" id="volume-slider" min="0" max="1" step="0.01" value="0.075">
+        </div>
     </div>
+
+    <div id="song-credit">CD: Filmografo</div>
 
     <div class="scroll-progress">
         <div class="scroll-progress-bar"></div>
