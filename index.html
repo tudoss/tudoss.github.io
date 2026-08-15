@@ -94,11 +94,12 @@
             width: 165px;
         }
 
-        #volume-control i {
+        #volume-icon {
             cursor: pointer;
-            width: 18px;
+            width: 20px;
+            height: 20px;
             flex-shrink: 0;
-            text-align: center;
+            display: block;
         }
 
         #volume-slider {
@@ -747,7 +748,18 @@
     </audio>
 
     <div id="volume-control">
-        <i class="fa-solid fa-volume-high" id="volume-icon"></i>
+        <svg id="volume-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+            <defs>
+                <mask id="volumeIconMask">
+                    <g fill="none" stroke="#fff" stroke-width="4">
+                        <path fill="#555" stroke-linejoin="round" d="M24 6v36c-7 0-12.201-9.16-12.201-9.16H6a2 2 0 0 1-2-2V17.01a2 2 0 0 1 2-2h5.799S17 6 24 6Z"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M32 15a11.91 11.91 0 0 1 1.684 1.859A12.07 12.07 0 0 1 36 24c0 2.654-.846 5.107-2.278 7.09A11.936 11.936 0 0 1 32 33"></path>
+                        <path stroke-linecap="round" d="M34.236 41.186C40.084 37.696 44 31.305 44 24c0-7.192-3.796-13.496-9.493-17.02"></path>
+                    </g>
+                </mask>
+            </defs>
+            <path fill="currentColor" d="M0 0h48v48H0z" mask="url(#volumeIconMask)"></path>
+        </svg>
         <input type="range" id="volume-slider" min="0" max="1" step="0.01" value="0.075">
     </div>
 
@@ -982,13 +994,7 @@
         bgMusic.volume = lastVolume;
 
         function updateVolumeIcon(v) {
-            if (v == 0) {
-                volumeIcon.className = 'fa-solid fa-volume-xmark';
-            } else if (v < 0.5) {
-                volumeIcon.className = 'fa-solid fa-volume-low';
-            } else {
-                volumeIcon.className = 'fa-solid fa-volume-high';
-            }
+            volumeIcon.style.opacity = v == 0 ? '0.45' : '1';
         }
 
         function setVolume(v) {
