@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="it">
 
 <head>
@@ -31,14 +31,6 @@
 
         .app-container.animate-in {
             opacity: 1;
-        }
-
-        .section {
-            transition: transform 1s ease-out, opacity 1s ease-out;
-        }
-
-        #staffExperience {
-            transition-delay: 0.4s;
         }
 
         #bg-start-audio {
@@ -280,6 +272,7 @@
             margin-left: 200px;
         }
 
+        /* FIX #4: Merged duplicate .section rules + added entrance animation initial state */
         .section {
             background: var(--bg-card);
             border: 1px solid var(--border-primary);
@@ -287,13 +280,24 @@
             padding: 2rem;
             backdrop-filter: blur(20px);
             position: relative;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             overflow: hidden;
             max-width: 1000px;
             margin: 0 auto 40px auto;
             width: 100%;
             min-height: auto;
             scroll-margin-top: 20px;
+            /* Entrance animation: start hidden and shifted down */
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out,
+                        border-color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+                        box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* FIX #4: .visible class applied by JS to trigger entrance animation */
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .section:last-child {
@@ -303,6 +307,10 @@
         #profileBio {
             margin-bottom: 100px !important;
             transition-delay: 0.3s;
+        }
+
+        #staffExperience {
+            transition-delay: 0.5s;
         }
 
         #profileName {
@@ -889,7 +897,7 @@
                 ],
                 minecraft: [
                     { serverName: "EngineMC", role: "ADMIN, SS MANAGER, STAFF & MEDIA MANAGER", color: "#ff3333", imgurLink: "https://imgur.com/a/enginemc-admin-ss-staff-media-manager-pluginner-M8pVx4x" },
-                    { serverName: "FruitMC", role: "SRMOD, SS VERIFIED, ROLL VERIFIED", color: "#3b82f6", imgurLink: "https://imgur.com/a/fruitmc-srmod-ss-verified-roll-verified-pOjBrPI" }
+                    { serverName: "FruitMC", role: "SRMOD, SS VERIFIED, ROLL VERIFIED", color: "#3b82f6", imgurLink: "https://imgur.com/a/fruitmc-srmod-ss-verified-roll-verified-pOjBrPI" },
                     { serverName: "CoralMC", role: "TRAINEE", color: "#FFFF00", imgurLink: "" }
                 ]
             },
@@ -926,7 +934,14 @@
             servers.forEach(server => {
                 const card = document.createElement('div');
                 card.className = 'server-card';
-                card.addEventListener('click', () => window.open(server.imgurLink, '_blank'));
+
+                // FIX #1: Guard against empty imgurLink to avoid opening a blank tab
+                // FIX #2: Added noopener,noreferrer for security
+                if (server.imgurLink) {
+                    card.addEventListener('click', () => window.open(server.imgurLink, '_blank', 'noopener,noreferrer'));
+                } else {
+                    card.style.cursor = 'default';
+                }
 
                 const yearHtml = server.year ? `<div class="server-year">${server.year}</div>` : '';
 
@@ -957,7 +972,10 @@
             items.forEach(item => {
                 const card = document.createElement('div');
                 card.className = 'server-card';
-                card.addEventListener('click', () => window.open(item.link, '_blank'));
+
+                // FIX #2: Added noopener,noreferrer for security
+                card.addEventListener('click', () => window.open(item.link, '_blank', 'noopener,noreferrer'));
+
                 const cardName = item.name || item.role;
                 card.innerHTML = `
                     <div class="server-info">
@@ -1057,9 +1075,14 @@
             bgStartAudioH1.style.opacity = '0';
 
             setTimeout(() => {
-                document.body.style.overflowY = 'auto'
+                document.body.style.overflowY = 'auto';
                 appContainer.classList.add('animate-in');
                 volumeControl.classList.add('animate-in');
+
+                // FIX #4: Trigger entrance animation on all sections.
+                // Each section's transition-delay (0.3s for Bio, 0.5s for Staff)
+                // staggers them so they fade+slide in one after the other.
+                document.querySelectorAll('.section').forEach(s => s.classList.add('visible'));
             }, 100);
 
             bgMusic.play().catch((error) => {
@@ -1102,7 +1125,6 @@
             window.addEventListener('scroll', highlightActiveSection);
             highlightActiveSection();
         });
-
 
     </script>
 
