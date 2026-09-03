@@ -272,7 +272,6 @@
             margin-left: 200px;
         }
 
-        /* FIX #4: Merged duplicate .section rules + added entrance animation initial state */
         .section {
             background: var(--bg-card);
             border: 1px solid var(--border-primary);
@@ -286,7 +285,6 @@
             width: 100%;
             min-height: auto;
             scroll-margin-top: 20px;
-            /* Entrance animation: start hidden and shifted down */
             opacity: 0;
             transform: translateY(20px);
             transition: opacity 0.8s ease-out, transform 0.8s ease-out,
@@ -294,7 +292,6 @@
                         box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        /* FIX #4: .visible class applied by JS to trigger entrance animation */
         .section.visible {
             opacity: 1;
             transform: translateY(0);
@@ -894,9 +891,9 @@
                     { serverName: "Zeta.ac", role: "ADMIN", color: "#ff2b2b", imgurLink: "https://imgur.com/a/jM755or" },
                     { serverName: "Galaxy Tierlist [1.9+]", role: "HELPER, SS VERIFIED", color: "#33cc33", imgurLink: "https://imgur.com/a/WbDa917" },
                     { serverName: "MeowTools & Community", role: "SS VERIFIED", color: "#ff2b2b", imgurLink: "https://imgur.com/a/8tIKyB5" },
-                    { serverName: "Survival PvP Tierlist [1.21+]", role: "SS VERIFIED", color: "#ff2b2b", imgurLink: "https://imgur.com/a/survival-pvp-tierlist-1-21-sser-7ktUw8j"}
-                    { serverName: "SS Italy", role: "CEO, Head of SS", color: "#8b0000", imgurLink: "https://imgur.com/a/lyw55TW"}
-                    { serverName: "MMC Tiers", role: "Mod, Forensics", color: "#ff2b2b", imgurLink: "https://imgur.com/a/qMX3JRI"}
+                    { serverName: "Survival PvP Tierlist [1.21+]", role: "SS VERIFIED", color: "#ff2b2b", imgurLink: "https://imgur.com/a/survival-pvp-tierlist-1-21-sser-7ktUw8j" },
+                    { serverName: "SS Italy", role: "CEO, Head of SS", color: "#8b0000", imgurLink: "https://imgur.com/a/lyw55TW" },
+                    { serverName: "MMC Tiers", role: "Mod, Forensics", color: "#ff2b2b", imgurLink: "https://imgur.com/a/qMX3JRI" }
                 ],
                 minecraft: [
                     { serverName: "EngineMC", role: "ADMIN, SS MANAGER, STAFF & MEDIA MANAGER", color: "#8b0000", imgurLink: "https://imgur.com/a/enginemc-admin-ss-staff-media-manager-pluginner-M8pVx4x" },
@@ -907,8 +904,7 @@
             links: [
                 { name: "Guns.lol", role: "Link", icon: "fa-solid fa-crosshairs", color: "#ff3333", link: "https://guns.lol/tudo" },
                 { name: "NameMC", role: "Tudoh_", icon: "fa-solid fa-network-wired", color: "#FFFFFF", link: "https://namemc.com/profile/Tudoh_.1" },
-                { name: "Discord",   role: "@Tudo.",  icon: "fa-brands fa-discord",     color: "#5865F2", link: "https://discord.com/users/1324096950038958100" }
-
+                { name: "Discord", role: "@Tudo.", icon: "fa-brands fa-discord", color: "#5865F2", link: "https://discord.com/users/1324096950038958100" }
             ]
         };
 
@@ -940,8 +936,6 @@
                 const card = document.createElement('div');
                 card.className = 'server-card';
 
-                // FIX #1: Guard against empty imgurLink to avoid opening a blank tab
-                // FIX #2: Added noopener,noreferrer for security
                 if (server.imgurLink) {
                     card.addEventListener('click', () => window.open(server.imgurLink, '_blank', 'noopener,noreferrer'));
                 } else {
@@ -978,7 +972,6 @@
                 const card = document.createElement('div');
                 card.className = 'server-card';
 
-                // FIX #2: Added noopener,noreferrer for security
                 card.addEventListener('click', () => window.open(item.link, '_blank', 'noopener,noreferrer'));
 
                 const cardName = item.name || item.role;
@@ -1084,9 +1077,6 @@
                 appContainer.classList.add('animate-in');
                 volumeControl.classList.add('animate-in');
 
-                // FIX #4: Trigger entrance animation on all sections.
-                // Each section's transition-delay (0.3s for Bio, 0.5s for Staff)
-                // staggers them so they fade+slide in one after the other.
                 document.querySelectorAll('.section').forEach(s => s.classList.add('visible'));
             }, 100);
 
