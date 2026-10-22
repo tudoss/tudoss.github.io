@@ -395,7 +395,7 @@
 </head>
 <body>
 
-    <audio id="music" loop preload="none"><source src="canzone.mp3" type="audio/mpeg"></audio>
+    <audio id="music" loop muted preload="auto"><source src="canzone.mp3" type="audio/mpeg"></audio>
 
     <!-- Nav -->
     <nav class="nav" id="nav" aria-label="Principale">
@@ -915,20 +915,23 @@
     function initAudio() {
         const a = $('#music'), btn = $('#sound'), ic = btn.querySelector('i');
         a.volume = .075;
-        let started = false, on = false;
-        const paint = () => { ic.className = on ? 'fa-solid fa-volume-high' : 'fa-solid fa-volume-xmark'; btn.setAttribute('aria-label', on ? 'Disattiva audio' : 'Attiva audio'); };
-        const start = () => { a.play().then(() => { started = true; on = true; paint(); }).catch(() => {}); };
-        btn.addEventListener('click', e => {
-            e.stopPropagation();
-            if (!started) { start(); return; }
-            on = !on; a.muted = !on; paint();
-        });
-        const first = e => {
-            if (btn.contains(e.target)) return;
-            if (!started) start();
-            removeEventListener('pointerdown', first, true);
+        a.muted = true;
+        let on = false;   // on = audio acceso (non in mute)
+        const paint = () => {
+            ic.className = on ? 'fa-solid fa-volume-high' : 'fa-solid fa-volume-xmark';
+            btn.setAttribute('aria-label', on ? 'Metti in mute' : 'Attiva audio');
         };
-        addEventListener('pointerdown', first, true);
+        paint();
+
+        // parte in mute (i browser lo permettono): la musica gira già, manca solo l'audio
+        a.play().catch(() => {});
+
+        // il click sul tasto è il gesto che permette di sentire l'audio
+        btn.addEventListener('click', () => {
+            if (on) { on = false; a.muted = true; }
+            else { on = true; a.muted = false; a.play().catch(() => {}); }
+            paint();
+        });
     }
 
     document.addEventListener('DOMContentLoaded', () => {
