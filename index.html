@@ -653,12 +653,10 @@
 
     /* ───── Hero content ───── */
     function buildHero() {
-        const admins = ALL.filter(x => /admin/i.test(x.role)).map(x => x.serverName);
         const lines = [
             `“TUDO” ${CONFIG.profile.subtitle}`,
             `Screenshare staff at ${ALL.length} communities`,
             `${count('leadership')} leadership roles`,
-            admins.length ? `Admin at ${admins.join(' and ')}` : null,
             `Time zone ${CONFIG.profile.tz}`
         ].filter(Boolean);
         $('#heroFacts').innerHTML = lines.map(l => `<span>${l}</span>`).join('');
