@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tudo - Student & DFIR Specialist</title>
-    <meta name="description" content="Tudo, DFIR specialist e screensharer per community Minecraft.">
+    <title>Tudo - Student & Screensharer</title>
+    <meta name="description" content="Tudo, screensharer per community Minecraft.">
     <meta name="theme-color" content="#000000">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -424,7 +424,7 @@
                 <div class="wordmark-in"><div class="wordmark" aria-hidden="true">TUDO</div></div>
             </div>
         </div>
-        <h1 style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Tudo, Student & DFIR Specialist</h1>
+        <h1 style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Tudo, Student & Screensharer</h1>
 
         <div class="hero-bottom">
             <h2 class="hero-title">Screenshare and<br>forensics, done<br>properly.</h2>
@@ -464,7 +464,7 @@
                 <div class="reveal">
                     <div class="kicker">About</div>
                     <h2 class="h2">Checks that<br><span class="soft">hold up.</span></h2>
-                    <p class="lead">I'm Tudo, a student and DFIR specialist. I run screenshares and forensic checks for Minecraft communities, from tierlists to ranked servers.</p>
+                    <p class="lead">I'm Tudo, a student and screensharer. I run screenshares and forensic checks for Minecraft communities, from tierlists to ranked servers.</p>
                     <dl class="about-facts">
                         <div><dt>Focus</dt><dd>Myself &amp; ScreenSharing</dd></div>
                         <div><dt>Time zone</dt><dd>CEST</dd></div>
@@ -481,7 +481,7 @@
                             <div class="avatar"><img id="avatar" alt="Tudo"></div>
                             <div>
                                 <h3>Tudo</h3>
-                                <p>Student &amp; DFIR Specialist</p>
+                                <p>Student &amp; Screensharer</p>
                             </div>
                         </div>
                         <dl class="idcard-rows" id="idRows"></dl>
@@ -543,7 +543,7 @@
             <div class="foot-grid">
                 <div>
                     <a href="#top" class="logo"><span class="logo-mark">T</span>Tudo</a>
-                    <p>Student and DFIR specialist. Screenshare and digital forensics for Minecraft communities.</p>
+                    <p>Student and screensharer. Screenshare and digital forensics for Minecraft communities.</p>
                 </div>
                 <div>
                     <h5>Page</h5>
@@ -569,7 +569,7 @@
 
     <script>
     const CONFIG = {
-        profile: { name: "Tudo", avatar: "profilepicture.png", subtitle: "Student & DFIR Specialist", age: 16, tz: "CEST", mc: "Tudoh_", discord: "@Tudo." },
+        profile: { name: "Tudo", avatar: "profilepicture.png", subtitle: "Student & Screensharer", age: 16, tz: "CEST", mc: "Tudoh_", discord: "@Tudo." },
         staffExperience: {
             discord: [
                 { serverName: "AuraMC Tierlist", role: "MOD, SSer", imgurLink: "https://imgur.com/a/elytrapvp-tierlist-mod-ss-verified-CADzfWh" },
@@ -683,7 +683,7 @@
             `Time zone ${CONFIG.profile.tz}`
         ].filter(Boolean);
         $('#heroFacts').innerHTML = lines.map(l => `<span>${l}</span>`).join('');
-        $('#heroCopy').textContent = `A DFIR specialist and screensharer for Minecraft communities, on the screenshare staff of ${ALL.length} of them.`;
+        $('#heroCopy').textContent = `A screensharer for Minecraft communities, on the screenshare staff of ${ALL.length} of them.`;
         $('#heroDiscord').href = CONFIG.links.find(l => l.name === 'Discord').link;
     }
 
