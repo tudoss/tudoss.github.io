@@ -45,7 +45,6 @@
 
         .wrap { max-width: 1240px; margin: 0 auto; padding: 0 2.5rem; }
 
-        /* ───────── Nav ───────── */
         .nav {
             position: fixed; inset: 0 0 auto 0; z-index: 100;
             height: 68px;
@@ -88,7 +87,6 @@
         .pill.ghost { background: transparent; color: #fff; border: 1px solid var(--line-2); padding: 0 1.05rem; }
         .pill.ghost:hover { background: rgba(255,255,255,.06); box-shadow: none; }
 
-        /* ───────── Hero ───────── */
         .hero {
             position: relative;
             min-height: 100vh; min-height: 100svh;
@@ -190,7 +188,6 @@
         @keyframes shine { 0% { background-position: 0% 0, 0 0; } 38%, 100% { background-position: 100% 0, 0 0; } }
         @keyframes cue { 0% { transform: translateY(0); opacity: 0; } 30% { opacity: .8; } 100% { transform: translateY(30px); opacity: 0; } }
 
-        /* ───────── Generic sections ───────── */
         section { position: relative; }
         .sec { padding: 8rem 0; }
         .kicker { font-size: .8rem; font-weight: 500; color: var(--muted); display: inline-flex; align-items: center; gap: .55rem; margin-bottom: 1.1rem; }
@@ -202,7 +199,6 @@
         .reveal { opacity: 0; transform: translateY(24px); transition: opacity .9s var(--ease), transform .9s var(--ease); }
         .reveal.in { opacity: 1; transform: none; }
 
-        /* ───────── Statement ───────── */
         .statement { padding: 9rem 0 6rem; border-top: 1px solid var(--line); }
         .statement-text {
             font-family: var(--display); font-weight: 600;
@@ -211,7 +207,6 @@
         }
         .statement-text .w { color: rgba(255,255,255, var(--o, .16)); }
 
-        /* ───────── Stats ───────── */
         .stats { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: var(--bg-2); }
         .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); }
         .stat { padding: 3rem 2rem; border-left: 1px solid var(--line); }
@@ -219,7 +214,6 @@
         .stat-n { font-family: var(--display); font-weight: 700; font-size: clamp(2.6rem, 5vw, 4.2rem); line-height: 1; letter-spacing: -.05em; font-variant-numeric: tabular-nums; }
         .stat-l { margin-top: .7rem; font-size: .8rem; color: var(--muted); }
 
-        /* ───────── About ───────── */
         .about-grid { display: grid; grid-template-columns: 1.05fr .95fr; gap: 6rem; align-items: center; }
         .about-facts { margin-top: 2.5rem; display: grid; gap: 0; border-top: 1px solid var(--line); max-width: 460px; }
         .about-facts div { display: flex; justify-content: space-between; padding: .95rem 0; border-bottom: 1px solid var(--line); font-size: .88rem; }
@@ -253,7 +247,6 @@
         .idcard-rows dt { color: var(--dim); }
         .idcard-rows dd { font-weight: 500; }
 
-        /* ───────── Experience ───────── */
         .exp { border-top: 1px solid var(--line); }
         .exp-head { display: flex; justify-content: space-between; align-items: end; gap: 2rem; margin-bottom: 3.5rem; flex-wrap: wrap; }
 
@@ -309,7 +302,6 @@
         a.row:hover .row-act { color: #fff; }
         a.row:hover .row-act i { transform: translate(2px, -2px); }
 
-        /* ───────── Favorites ───────── */
         .fav-sec { border-top: 1px solid var(--line); }
         .fav-list { margin-top: 4rem; border-top: 1px solid var(--line); }
         .fav {
@@ -322,7 +314,6 @@
         .fav-list:hover .fav { opacity: .38; }
         .fav-list .fav:hover { opacity: 1; padding-left: 1rem; }
 
-        /* ───────── Contact ───────── */
         .contact { border-top: 1px solid var(--line); text-align: center; overflow: hidden; }
         .contact::before { content: ''; position: absolute; left: 50%; top: 0; width: 900px; height: 380px; transform: translateX(-50%); background: radial-gradient(closest-side, rgba(255,43,43,.1), transparent); pointer-events: none; }
         .contact .h2 { font-size: clamp(2.6rem, 7.5vw, 6.2rem); line-height: .96; }
@@ -336,7 +327,6 @@
         .link .arr { font-size: .75rem; color: var(--dim); transition: transform .3s var(--ease), color .3s; }
         .link:hover .arr { transform: translate(3px, -3px); color: #fff; }
 
-        /* ───────── Footer ───────── */
         footer { border-top: 1px solid var(--line); padding: 4.5rem 0 2rem; background: var(--bg-2); }
         .foot-grid { display: grid; grid-template-columns: 1.6fr 1fr 1fr; gap: 3rem; padding-bottom: 4rem; }
         .foot-grid p { color: var(--muted); font-size: .86rem; max-width: 300px; margin-top: 1rem; }
@@ -347,7 +337,6 @@
         .foot-bottom { display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding-top: 1.6rem; border-top: 1px solid var(--line); font-size: .75rem; color: var(--dim); flex-wrap: wrap; }
         .foot-bottom a:hover { color: #fff; }
 
-        /* ───────── Responsive ───────── */
         @media (max-width: 1000px) {
             .about-grid { grid-template-columns: 1fr; gap: 4rem; }
             .exp-grid { grid-template-columns: 1fr; gap: 2.5rem; }
@@ -397,7 +386,6 @@
 
     <audio id="music" loop muted preload="auto"><source src="canzone.mp3" type="audio/mpeg"></audio>
 
-    <!-- Nav -->
     <nav class="nav" id="nav" aria-label="Principale">
         <a href="#top" class="logo"><span class="logo-mark">T</span>Tudo</a>
         <ul class="nav-links">
@@ -413,7 +401,6 @@
         </div>
     </nav>
 
-    <!-- Hero -->
     <header class="hero" id="top">
         <div class="hero-facts" id="heroFacts"></div>
         <div class="hero-side l">Digital forensics</div>
@@ -444,21 +431,19 @@
     </header>
 
     <main>
-        <!-- Statement -->
+
         <section class="statement">
             <div class="wrap">
                 <p class="statement-text" id="statement"></p>
             </div>
         </section>
 
-        <!-- Stats -->
         <section class="stats">
             <div class="wrap">
                 <div class="stats-grid" id="stats"></div>
             </div>
         </section>
 
-        <!-- About -->
         <section class="sec" id="about">
             <div class="wrap about-grid">
                 <div class="reveal">
@@ -490,7 +475,6 @@
             </div>
         </section>
 
-        <!-- Experience -->
         <section class="sec exp" id="experience">
             <div class="wrap">
                 <div class="exp-head reveal">
@@ -514,7 +498,6 @@
             </div>
         </section>
 
-        <!-- Favorites -->
         <section class="sec fav-sec" id="favorites">
             <div class="wrap">
                 <div class="reveal">
@@ -525,7 +508,6 @@
             </div>
         </section>
 
-        <!-- Contact -->
         <section class="sec contact" id="contact">
             <div class="wrap">
                 <div class="reveal">
@@ -614,14 +596,13 @@
                 { serverName: "Crystal Club [1.21+]", role: "SSer", imgurLink: "https://imgur.com/a/Hpr5gNe"},
                 { serverName: "Cactus Tiers", role: "SSer", imgurLink: "https://imgur.com/a/WY839fN"},
                 { serverName: "Asian Tiers", role: "SSer", imgurLink: "https://imgur.com/a/z9vyY1S"},
-                { serverName: "Sumo PvP community [1,21+]", role: "SSer", imgurLink: "https://imgur.com/a/4FItfof"},
+                { serverName: "Sumo PvP community [1.21+]", role: "SSer", imgurLink: "https://imgur.com/a/4FItfof"},
                 { serverName: "Tier Cores", role: "SSer", imgurLink: "https://imgur.com/a/MHIA5mh"},
                 { serverName: "Prime Tag Ranked", role: "SSer", imgurLink: "https://imgur.com/a/1sUvmPt"},
                 { serverName: "BedWars TFS", role: "Head SSer", imgurLink: "https://imgur.com/a/g7rw2qA"},
                 { serverName: "Pika RBW", role: "SSer", imgurLink: "https://imgur.com/a/xzNF8jz"},
-                { serverName: "Balkan Tiers", role: "SSer", imgurLink: "https://imgur.com/a/4KYaAn8"}
+                { serverName: "Balkan Tiers", role: "SSer", imgurLink: "https://imgur.com/a/4KYaAn8"},
                 { serverName: "Bridge Fighting", role: "SSer", imgurLink: "https://imgur.com/a/KnRypC0"}
-                
             ],
             minecraft: [
                 { serverName: "EngineMC", role: "ADMIN, SS MANAGER, STAFF & MEDIA MANAGER", imgurLink: "https://imgur.com/a/enginemc-admin-ss-staff-media-manager-pluginner-M8pVx4x" },
@@ -637,7 +618,6 @@
             { name: "NameMC", handle: "Tudoh_", icon: "fa-solid fa-cube", link: "https://namemc.com/profile/Tudoh_.1" },
             { name: "Guns.lol", handle: "guns.lol/tudo", icon: "fa-solid fa-link", link: "https://guns.lol/tudo" }
         ],
-        // community in evidenza, nell'ordine mostrato
         highlights: ["EngineMC", "SS Italy", "Zeta.ac", "iRis RBW", "MeowTools & Community", "SS Methods"],
         favorites: [
             { name: "SS Italy",             quote: "My own project." },
@@ -648,7 +628,6 @@
         ]
     };
 
-    /* ───── Data ───── */
     const ALL = [
         ...CONFIG.staffExperience.discord.map(x => ({ ...x, platform: 'Discord' })),
         ...CONFIG.staffExperience.minecraft.map(x => ({ ...x, platform: 'Minecraft' }))
@@ -677,7 +656,6 @@
     const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
     const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    /* ───── Hero content ───── */
     function buildHero() {
         const lines = [
             `“TUDO” ${CONFIG.profile.subtitle}`,
@@ -690,7 +668,6 @@
         $('#heroDiscord').href = CONFIG.links.find(l => l.name === 'Discord').link;
     }
 
-    /* intro counter */
     function introCount() {
         const target = ALL.length, node = $('#heroCount');
         if (reduce) { node.textContent = String(target).padStart(3, '0'); return; }
@@ -702,7 +679,6 @@
         })(performance.now());
     }
 
-    /* ───── Statement (word by word on scroll) ───── */
     function buildStatement() {
         const text = `Screenshare and digital forensics for competitive Minecraft. From tierlists to ranked servers, I verify players, review evidence and keep communities fair.`;
         const box = $('#statement');
@@ -719,7 +695,6 @@
         words.forEach((w, i) => w.style.setProperty('--o', (.16 + .84 * clamp(p * (n + 3) - i)).toFixed(3)));
     }
 
-    /* ───── Stats ───── */
     function buildStats() {
         const data = [
             { n: ALL.length, l: 'Communities' },
@@ -744,7 +719,6 @@
         })(t0);
     }
 
-    /* ───── About card ───── */
     function buildAbout() {
         $('#avatar').src = CONFIG.profile.avatar;
         const rows = [
@@ -773,7 +747,6 @@
         }
     }
 
-    /* ───── Experience ───── */
     function pointerGlow(node) {
         node.addEventListener('pointermove', e => {
             const r = node.getBoundingClientRect();
@@ -842,7 +815,6 @@
         buildSpots();
         renderRows();
 
-        // indice laterale: scorre al gruppo e si evidenzia mentre scorri
         const tabs = $('#tabs');
         GROUPS.forEach(g => {
             const a = el('a', 'tab', `<span>${g.label}</span><span>${count(g.key)}</span>`);
@@ -857,7 +829,6 @@
         tabEls[0].classList.add('on');
     }
 
-    /* ───── Favorites ───── */
     function buildFavorites() {
         const box = $('#favList');
         CONFIG.favorites.forEach((f, i) => {
@@ -868,7 +839,6 @@
         });
     }
 
-    /* ───── Links ───── */
     function buildLinks() {
         const box = $('#links'), foot = $('#footLinks');
         CONFIG.links.forEach(l => {
@@ -881,7 +851,6 @@
         });
     }
 
-    /* ───── Hero scroll + tilt ───── */
     function initHeroMotion() {
         const hero = $('#top'), wrap = $('#markWrap');
         let tx = 0, ty = 0, cx = 0, cy = 0, p = 0;
@@ -904,7 +873,6 @@
         }
     }
 
-    /* ───── Scroll handlers ───── */
     function initScroll() {
         const nav = $('#nav');
         let ticking = false;
@@ -935,22 +903,19 @@
         ['top', 'about', 'experience', 'favorites', 'contact'].forEach(id => sIO.observe(document.getElementById(id)));
     }
 
-    /* ───── Audio ───── */
     function initAudio() {
         const a = $('#music'), btn = $('#sound'), ic = btn.querySelector('i');
         a.volume = .075;
         a.muted = true;
-        let on = false;   // on = audio acceso (non in mute)
+        let on = false;
         const paint = () => {
             ic.className = on ? 'fa-solid fa-volume-high' : 'fa-solid fa-volume-xmark';
             btn.setAttribute('aria-label', on ? 'Metti in mute' : 'Attiva audio');
         };
         paint();
 
-        // parte in mute (i browser lo permettono): la musica gira già, manca solo l'audio
         a.play().catch(() => {});
 
-        // il click sul tasto è il gesto che permette di sentire l'audio
         btn.addEventListener('click', () => {
             if (on) { on = false; a.muted = true; }
             else { on = true; a.muted = false; a.play().catch(() => {}); }
